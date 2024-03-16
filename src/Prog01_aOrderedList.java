@@ -49,7 +49,7 @@ public class Prog01_aOrderedList {
 			System.out.print("Enter input filename: ");
 			fileName = console.nextLine();
 			try {
-				readFile = GetInputFile("..\\" + fileName);
+				readFile = GetInputFile(fileName);
 				break;
 				
 			} catch(FileNotFoundException e) {
