@@ -48,6 +48,14 @@ public class Prog01_aOrderedList {
 		while(true) {
 			System.out.print("Enter input filename: ");
 			fileName = console.nextLine();
+			// Check in case system uses a different file separator
+			if(fileName.contains("\\")) {
+				for(int i = 0; i < fileName.length(); i++) {
+		            		if(fileName.charAt(i) == '\\') {
+		            			fileName = fileName.substring(0,i) + File.separator + fileName.substring(i+1);
+		           	 	}
+		        	}
+			}
 			try {
 				readFile = GetInputFile(fileName);
 				break;
@@ -103,6 +111,14 @@ public class Prog01_aOrderedList {
 		while(true) {
 			System.out.print("Enter output filename: ");
 			fileName = console.nextLine();
+			// Check in case system uses a different file separator
+			if(fileName.contains("\\")) {
+				for(int i = 0; i < fileName.length(); i++) {
+		            		if(fileName.charAt(i) == '\\') {
+		            			fileName = fileName.substring(0,i) + File.separator + fileName.substring(i+1);
+		           	 	}
+		        	}
+			}
 			try {
 				writeFile = GetOutputFile(fileName);
 				writeFile.write(carFormat.toString());
