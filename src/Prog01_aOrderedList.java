@@ -104,7 +104,7 @@ public class Prog01_aOrderedList {
 			System.out.print("Enter output filename: ");
 			fileName = console.nextLine();
 			try {
-				writeFile = GetOutputFile("..\\" + fileName);
+				writeFile = GetOutputFile(fileName);
 				writeFile.write(carFormat.toString());
 				writeFile.close();
 				console.close();
