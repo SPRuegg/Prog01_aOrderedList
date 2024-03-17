@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * aOrderedList Class. A customized data structure similar to an
@@ -14,11 +13,11 @@ import java.util.Comparator;
  * 
  */
 
-public class aOrderedList {
+public class aOrderedList <T> {
 	
 	private final int SIZEINCREMENTS = 20; // size used to increment increasing ordered list
 	
-	private Car[] oList; // An array used to aggregate the Cars
+	private T[] oList; // An array used to aggregate the Cars
 	
 	private int listSize; // Used to keep track of the current size of the list including null values
 	
@@ -30,17 +29,18 @@ public class aOrderedList {
 	* Assigns the base amount of objects to 0, sets the list size to SIZEINCREMENTS,
 	* prepares the Car[] for objects to add, and sets curr to -1.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
 	*
 	*/
+	@SuppressWarnings("unchecked")
 	public aOrderedList() {
 		numObjects = 0;
 		listSize = SIZEINCREMENTS;
-		oList = new Car[SIZEINCREMENTS];
+		oList = (T[]) new Object[SIZEINCREMENTS];
 		curr = -1;
 	}
 	
@@ -49,28 +49,28 @@ public class aOrderedList {
 	* increases the space availability by SIZEINCREMENTS. It will add a Car object to the list,
 	* and maintain a sorted array, increasing the amount of objects in the array.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
 	*
 	*/
-	public void addCar(Comparable<Car> newCar) {
+	public void add(T newObject) {
 		if(numObjects == listSize) {
 			listSize += SIZEINCREMENTS;
 			oList = Arrays.copyOf(oList, listSize);
 		}
-		oList[numObjects] = (Car) newCar;
+		oList[numObjects] = newObject;
 		numObjects++;
-		Arrays.sort(oList, Comparator.nullsLast(Comparator.naturalOrder()));
+		Arrays.sort(oList, 0, numObjects);
 	}
 	
 	/**
 	* Returns the amount of non-null objects in the array.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -83,22 +83,22 @@ public class aOrderedList {
 	/**
 	* Returns the object at a given index
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
 	*
 	*/
-	public Comparable<Car> get(int index) {
+	public T get(int index) {
 		return oList[index];
 	}
 	
 	/**
 	* Returns true if there are no objects in the array, and false otherwise
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -114,8 +114,8 @@ public class aOrderedList {
 	* this method will decrease the numObjects variable, and check to see if space
 	* optimization is possible.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -125,38 +125,16 @@ public class aOrderedList {
 		if(index >= numObjects || index < 0) {
 			return;
 		}
+		
+		for(int i = index; i < numObjects - 1; i++) {
+			oList[i] = oList[i + 1];
+		}
+		oList[numObjects - 1] = null;
 		numObjects--;
-		oList[index] = null;
-		Arrays.sort(oList, Comparator.nullsLast(Comparator.naturalOrder()));
+		
 		if(numObjects == listSize) {
 			listSize -= SIZEINCREMENTS;
 			oList = Arrays.copyOf(oList, listSize);
-		}
-	}
-	
-	/**
-	* Removes the first instance of an object that shares both the year and make, if it exists.
-	* This method will decrease the numObjects variable, and check to see if space
-	* optimization is possible.
-	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
-	*
-	* @author Shane Ruegg
-	* @since 03/17/24
-	*
-	*/
-	public void remove(Comparable<Car> car) {
-		Car removal = (Car) car;
-		if(removal == null) { 
-			return;
-		}
-		for(int i = 0; i < numObjects; i++) {
-			Car currCar = (Car) oList[i];
-			if(currCar.getMake().equals(removal.getMake()) && currCar.getYear() == removal.getYear()) {
-				remove(i);
-				return;
-			}
 		}
 	}
 	
@@ -165,22 +143,25 @@ public class aOrderedList {
 	* This method will decrease the numObjects variable, and check to see if space
 	* optimization is possible.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
 	*
 	*/
 	public void remove() {
-		remove(next());
+		if(curr >= 0) {
+			remove(curr);
+			curr--;
+		}
 	}
 	
 	/**
 	* Resets the curr value to -1.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -193,8 +174,8 @@ public class aOrderedList {
 	/**
 	* Returns true if the next element in the array is within [0, numObjects)
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -207,14 +188,14 @@ public class aOrderedList {
 	/**
 	* Returns the next element in the array if it exists, otherwise returns null.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
 	*
 	*/
-	public Comparable<Car> next() {
+	public T next() {
 		if(hasNext()) {
 			curr++;
 			return oList[curr];
@@ -225,8 +206,8 @@ public class aOrderedList {
 	/**
 	* Returns a String representation of the list excluding null values.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
