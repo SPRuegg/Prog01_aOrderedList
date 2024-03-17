@@ -214,7 +214,7 @@ public class aOrderedList {
 	* @since 03/17/24
 	*
 	*/
-	public Car next() {
+	public Comparable<Car> next() {
 		if(hasNext()) {
 			curr++;
 			return oList[curr];
