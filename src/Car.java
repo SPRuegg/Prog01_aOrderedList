@@ -20,8 +20,8 @@ public class Car implements Comparable<Car> {
 	/**
 	* Assigns the data values for the Car's make, year, and price
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -36,8 +36,8 @@ public class Car implements Comparable<Car> {
 	/**
 	* Returns the make of the Car
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -50,8 +50,8 @@ public class Car implements Comparable<Car> {
 	/**
 	* Returns the year of the Car
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -64,8 +64,8 @@ public class Car implements Comparable<Car> {
 	/**
 	* Returns the price of the Car
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -76,14 +76,32 @@ public class Car implements Comparable<Car> {
 	}
 	
 	/**
+	* This method returns true if two vehicles share both the same make, and year,
+	* it returns false otherwise
+	*
+	* CSC 1351 Programming Project No 1
+	* Section 2
+	*
+	* @author Shane Ruegg
+	* @since 03/17/24
+	*
+	*/
+	public boolean equals(Car other) {
+		if(this.make.equals(other.make) && this.year == other.year) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	* An Implementation of the Comparable Interface, returns an integer less than 0
 	* if the Car it is compared to is greater than that of the Car the method is called on.
 	* returns an integer equal to 0 if the Car it is compared to is identical to the Car
 	* the method is called on(ignoring price), or returns an integer greater than 0 if
 	* the Car it is compared to is lower than that of the Car the method is called on.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
@@ -99,8 +117,8 @@ public class Car implements Comparable<Car> {
 	/**
 	* Returns a String representation of the Car.
 	*
-	* CSC 1351 Programming Project No <enter project number here>
-	* Section <insert your section number here>
+	* CSC 1351 Programming Project No 1
+	* Section 2
 	*
 	* @author Shane Ruegg
 	* @since 03/17/24
