@@ -85,10 +85,15 @@ public class Prog01_aOrderedList {
 				
 				while(list.hasNext()) {
 					
-					Car curr = list.next();
-					Car removal = new Car(info[1], Integer.parseInt(info[2]), 0);
+					Car curr = list.next(); // Represents the current car in the list
+					                        // to be checked against a car to be deleted
+					Car removal = null; // Represents the car that should be deleted from the list
 					
-					if(curr.equals(removal)) {
+					try {
+						removal = new Car(info[1], Integer.parseInt(info[2]), 0);
+					} catch(NumberFormatException e) {} // Will just ignore incorrect parameter types and move on
+					
+					if(removal != null && curr.equals(removal)) {
 						list.remove();
 					}
 				}
