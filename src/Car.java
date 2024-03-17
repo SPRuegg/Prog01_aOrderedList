@@ -126,6 +126,6 @@ public class Car implements Comparable<Car> {
 	*/
 	@Override
 	public String toString() {
-		return String.format("Make: %s, Year: %d, Price: %d", make, year, price);
+		return String.format("Make: %s, Year: %d, Price: %d;", make, year, price);
 	}
 }
