@@ -91,6 +91,9 @@ public class aOrderedList <T> {
 	*
 	*/
 	public T get(int index) {
+		if(index < 0 || index >= numObjects) {
+			throw nex IndexOutOfBoundsException();
+		}
 		return oList[index];
 	}
 	
@@ -122,8 +125,8 @@ public class aOrderedList <T> {
 	*
 	*/
 	public void remove(int index) {
-		if(index >= numObjects || index < 0) {
-			return;
+		if(index < 0 || index >= numObjects) {
+			throw nex IndexOutOfBoundsException();
 		}
 		
 		for(int i = index; i < numObjects - 1; i++) {
