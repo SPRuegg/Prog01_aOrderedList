@@ -41,9 +41,8 @@ public class Prog01_aOrderedList {
 		
 		PrintWriter writeFile = null; // PrintWriter that will write formatted and sorted data into the output file
 		
-		aOrderedList list = new aOrderedList(); // Declares and instantiates an aOrderedList object
+		aOrderedList<Car> list = new aOrderedList<Car>(); // Declares and instantiates an aOrderedList object
 		 										// that has been implemented to sort data accordingly
-		
 		//User Prompt for input file
 		while(true) {
 			System.out.print("Enter input filename: ");
@@ -51,10 +50,10 @@ public class Prog01_aOrderedList {
 			// Check in case system uses a different file separator
 			if(fileName.contains("\\")) {
 				for(int i = 0; i < fileName.length(); i++) {
-		            		if(fileName.charAt(i) == '\\') {
-		            			fileName = fileName.substring(0,i) + File.separator + fileName.substring(i+1);
-		           	 	}
-		        	}
+	          		if(fileName.charAt(i) == '\\') {
+            			fileName = fileName.substring(0,i) + File.separator + fileName.substring(i+1);
+	        	 	}
+	          	}
 			}
 			try {
 				readFile = GetInputFile(fileName);
@@ -70,27 +69,32 @@ public class Prog01_aOrderedList {
 		
 		//Reading the file
 		while(readFile.hasNextLine()) {
+			
 			String car = readFile.nextLine(); // current line to be interpreted
 			
 			String[] info = car.split(","); // A string array to handle each data parameter
 			
 			if(info[0].equals("A")) {
 				try {
-					list.addCar(new Car(info[1], 
+					list.add(new Car(info[1], 
 							Integer.parseInt(info[2]), 
 							Integer.parseInt(info[3])));
 				} catch(NumberFormatException e) {} // Will just ignore incorrect parameter types and move on
 			}
 			else if(info[0].equals("D")) {
-				if(info.length == 2) {
-					list.remove(Integer.parseInt(info[1]));
-				}
 				
-				else if(info.length == 3) {
-					list.remove(new Car(info[1], 
-							Integer.parseInt(info[2]), 0)); //Price isn't specified in any delete command
+				while(list.hasNext()) {
+					
+					Car curr = list.next();
+					Car removal = new Car(info[1], Integer.parseInt(info[2]), 0);
+					
+					if(curr.equals(removal)) {
+						list.remove();
+					}
 				}
+				list.reset();
 			}
+			
 		}
 		readFile.close(); // No longer in use
 		
@@ -114,10 +118,10 @@ public class Prog01_aOrderedList {
 			// Check in case system uses a different file separator
 			if(fileName.contains("\\")) {
 				for(int i = 0; i < fileName.length(); i++) {
-		            		if(fileName.charAt(i) == '\\') {
-		            			fileName = fileName.substring(0,i) + File.separator + fileName.substring(i+1);
-		           	 	}
-		        	}
+		            if(fileName.charAt(i) == '\\') {
+		            	fileName = fileName.substring(0,i) + File.separator + fileName.substring(i+1);
+		            }
+		        }
 			}
 			try {
 				writeFile = GetOutputFile(fileName);
