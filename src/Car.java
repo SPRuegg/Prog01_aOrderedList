@@ -76,24 +76,6 @@ public class Car implements Comparable<Car> {
 	}
 	
 	/**
-	* This method returns true if two vehicles share both the same make, and year,
-	* it returns false otherwise
-	*
-	* CSC 1351 Programming Project No 1
-	* Section 2
-	*
-	* @author Shane Ruegg
-	* @since 03/17/24
-	*
-	*/
-	public boolean equals(Car other) {
-		if(this.make.equals(other.make) && this.year == other.year) {
-			return true;
-		}
-		return false;
-	}
-	
-	/**
 	* An Implementation of the Comparable Interface, returns an integer less than 0
 	* if the Car it is compared to is greater than that of the Car the method is called on.
 	* returns an integer equal to 0 if the Car it is compared to is identical to the Car
