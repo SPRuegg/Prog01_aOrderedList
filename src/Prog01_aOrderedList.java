@@ -93,7 +93,7 @@ public class Prog01_aOrderedList {
 						removal = new Car(info[1], Integer.parseInt(info[2]), 0);
 					} catch(NumberFormatException e) {} // Will just ignore incorrect parameter types and move on
 					
-					if(removal != null && curr.equals(removal)) {
+					if(removal != null && curr.compareTo(removal) == 0) {
 						list.remove();
 					}
 				}
